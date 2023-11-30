@@ -4,6 +4,7 @@
   "description": "Implementação do https://www.tabnews.com.br para o https://curso.dev",
   "main": "index.js",
   "scripts": {
+    "docker:up": "docker compose -f infra/compose.yaml --detached --remove-orphans up",
     "lint": "prettier --write .",
     "test:watch": "jest --watch",
     "build": "next build",
