@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "docker:up": "docker compose -f infra/compose.yaml --detached --remove-orphans up",
-    "lint": "prettier --write .",
+    "lint": "npx @biomejs/biome check --apply .",
     "test:watch": "jest --watch",
     "build": "next build",
     "start": "next start",
-    "dev": "next dev",
-    "test": "jest"
+    "test": "bun test",
+    "dev": "next dev"
   },
   "author": "",
   "license": "MIT",
@@ -20,7 +20,10 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "jest": "^29.7.0",
-    "prettier": "^3.1.0"
+    "@biomejs/biome": "1.4.1",
+    "@types/node": "20.10.1",
+    "@types/react": "18.2.39",
+    "bun-types": "^1.0.14",
+    "typescript": "5.3.2"
   }
 }
