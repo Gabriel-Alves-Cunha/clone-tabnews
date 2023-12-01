@@ -41,6 +41,9 @@
       ],
       "#tests/*": [
         "./tests/*"
+      ],
+      "#infra/*": [
+        "./infra/*"
       ]
     },
     "jsx": "preserve"
