@@ -1,6 +1,6 @@
 import { Client, type ClientBase } from "pg";
 
-import { env } from "utils/env";
+import { env } from "#utils/env";
 
 // biome-ignore lint/suspicious/noExplicitAny: The types from the pg package show that this is an overloaded function.
 type OverloadedArgument = any;
@@ -12,6 +12,7 @@ type Database = {
 export const database: Database = {
 	async query(queryText: OverloadedArgument) {
 		const client = new Client({
+			ssl: process.env.NODE_ENV === "production",
 			port: Number(env.POSTGRES_PORT),
 			password: env.POSTGRES_PASSWORD,
 			database: env.POSTGRES_DB,
@@ -30,6 +31,8 @@ export const database: Database = {
 			return result;
 		} catch (error) {
 			console.error("Database query error!", error);
+
+			throw error;
 		} finally {
 			await client.end();
 		}

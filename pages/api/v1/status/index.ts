@@ -5,6 +5,8 @@ import type { DateString } from "utils/utilityTypes";
 import { database } from "#infra/database";
 import { env } from "utils/env";
 
+import "#utils/logger";
+
 export type StatusResponse = {
 	updated_at: DateString;
 	dependencies: {
@@ -18,7 +20,7 @@ export type StatusResponse = {
 
 export default async function status(
 	req: NextApiRequest,
-	res: NextApiResponse
+	res: NextApiResponse,
 ) {
 	const updatedAt = new Date().toISOString();
 
