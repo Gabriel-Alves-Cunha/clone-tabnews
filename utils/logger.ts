@@ -1,5 +1,3 @@
-import { relative } from "node:path";
-
 const { log } = console;
 
 ["debug", "log", "warn", "error", "table", "dir"].forEach((methodName) => {
@@ -19,14 +17,9 @@ const { log } = console;
 
 		Error.prepareStackTrace = originalPrepareStackTrace;
 
-		const relativeFileName = relative(
-			process.cwd(),
-			callee.getFileName() ?? "<unknown file name>",
-		)
-			.replace(process.cwd(), "")
-			.replace("file:/", "");
+		const fileName = callee.getFileName() ?? "<unknown file name>";
 
-		const label = `${relativeFileName}:${callee.getLineNumber()}`;
+		const label = `${fileName}:${callee.getLineNumber()}:${callee.getColumnNumber()}`;
 
 		log("\x1b[90m%s\x1b[0m", label);
 

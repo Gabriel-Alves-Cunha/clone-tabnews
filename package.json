@@ -1,33 +1,39 @@
 {
-  "name": "clone-tabnews",
-  "version": "1.0.0",
-  "description": "Implementação do https://www.tabnews.com.br para o https://curso.dev",
-  "main": "index.js",
-  "scripts": {
-    "services:up": "docker compose -f infra/compose.yaml up --detach --remove-orphans",
-    "services:stop": "docker compose -f infra/compose.yaml stop",
-    "services:down": "docker compose -f infra/compose.yaml down",
-    "lint": "npx @biomejs/biome check --apply .",
-    "dev": "bun run services:up && next dev",
-    "test:watch": "bun test --watch",
-    "build": "next build",
-    "start": "next start",
-    "test": "bun test"
-  },
-  "author": "Gabriel Alves Cunha",
-  "license": "MIT",
-  "dependencies": {
-    "next": "^14.2.2",
-    "pg": "^8.11.5",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.7.0",
-    "@types/node": "20.12.7",
-    "@types/pg": "^8.11.5",
-    "@types/react": "18.2.79",
-    "bun-types": "^1.1.4",
-    "typescript": "5.4.5"
-  }
+	"name": "clone-tabnews",
+	"version": "1.0.0",
+	"description": "Implementação do https://www.tabnews.com.br para o https://curso.dev",
+	"author": "Gabriel Alves Cunha",
+	"license": "MIT",
+	"main": "index.js",
+	"scripts": {
+		"services:up": "docker compose --file infra/compose.yaml up --detach --remove-orphans",
+		"migration:up": "node-pg-migrate up --migrations-dir infra/migrations --envPath .env.local",
+		"migration:create": "node-pg-migrate create --migrations-dir infra/migrations",
+		"services:stop": "docker compose -f infra/compose.yaml stop",
+		"services:down": "docker compose -f infra/compose.yaml down",
+		"lint": "npx @biomejs/biome check --apply .",
+		"dev": "bun run services:up && next dev",
+		"test:watch": "bun test --watch",
+		"build": "next build",
+		"start": "next start",
+		"test": "bun test"
+	},
+	"dependencies": {
+		"@million/lint": "^1.0.0-rc.26",
+		"million": "^3.1.11",
+		"next": "^14.2.4",
+		"node-pg-migrate": "^7.4.0",
+		"pg": "^8.12.0",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1"
+	},
+	"devDependencies": {
+		"dotenv": "^16.4.5",
+		"@biomejs/biome": "1.8.1",
+		"@types/node": "20.14.2",
+		"@types/pg": "^8.11.6",
+		"@types/react": "18.3.3",
+		"bun-types": "^1.1.13",
+		"typescript": "5.4.5"
+	}
 }

@@ -12,12 +12,12 @@ type Database = {
 export const database: Database = {
 	async query(queryText: OverloadedArgument) {
 		const client = new Client({
-			ssl: process.env.NODE_ENV === "production",
 			port: Number(env.POSTGRES_PORT),
 			password: env.POSTGRES_PASSWORD,
 			database: env.POSTGRES_DB,
 			host: env.POSTGRES_HOST,
 			user: env.POSTGRES_USER,
+			ssl: getSslValues(),
 		});
 
 		try {
@@ -37,4 +37,14 @@ export const database: Database = {
 			await client.end();
 		}
 	},
+};
+
+const getSslValues = () => {
+	if (process.env.POSTGRES_CA) {
+		return {
+			ca: process.env.POSTGRES_CA,
+		};
+	}
+
+	return process.env.NODE_ENV !== "development";
 };
