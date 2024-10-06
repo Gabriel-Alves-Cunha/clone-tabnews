@@ -6,34 +6,33 @@
 	"license": "MIT",
 	"main": "index.js",
 	"scripts": {
-		"services:up": "docker compose --file infra/compose.yaml up --detach --remove-orphans",
 		"migration:up": "node-pg-migrate up --migrations-dir infra/migrations --envPath .env.local",
+		"services:up": "docker compose --file infra/compose.yaml up --detach --remove-orphans",
 		"migration:create": "node-pg-migrate create --migrations-dir infra/migrations",
 		"services:stop": "docker compose -f infra/compose.yaml stop",
 		"services:down": "docker compose -f infra/compose.yaml down",
-		"lint": "npx @biomejs/biome check --apply .",
+		"test:watch": "bun test --watch --env-file .env.local",
+		"lint": "npx @biomejs/biome check --write .",
 		"dev": "bun run services:up && next dev",
-		"test:watch": "bun test --watch",
+		"test": "bun test --env-file .env.local",
 		"build": "next build",
-		"start": "next start",
-		"test": "bun test"
+		"start": "next start"
 	},
 	"dependencies": {
-		"@million/lint": "^1.0.0-rc.26",
+		"@million/lint": "^1.0.9",
 		"million": "^3.1.11",
-		"next": "^14.2.4",
-		"node-pg-migrate": "^7.4.0",
-		"pg": "^8.12.0",
+		"next": "^14.2.14",
+		"node-pg-migrate": "^7.7.0",
+		"pg": "^8.13.0",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1"
 	},
 	"devDependencies": {
-		"dotenv": "^16.4.5",
-		"@biomejs/biome": "1.8.1",
-		"@types/node": "20.14.2",
-		"@types/pg": "^8.11.6",
-		"@types/react": "18.3.3",
-		"bun-types": "^1.1.13",
-		"typescript": "5.4.5"
+		"@biomejs/biome": "1.9.3",
+		"@types/node": "22.7.4",
+		"@types/pg": "^8.11.10",
+		"@types/react": "18.3.11",
+		"bun-types": "^1.1.29",
+		"typescript": "5.6.2"
 	}
 }

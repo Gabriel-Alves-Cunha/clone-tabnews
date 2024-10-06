@@ -1,11 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import type { DateString } from "utils/utilityTypes";
-
-import { database } from "#infra/database";
 import { env } from "utils/env";
-
-import "#utils/logger";
+import type { DateString } from "utils/utilityTypes";
+import { database } from "#infra/database";
 
 export type StatusResponse = {
 	updated_at: DateString;

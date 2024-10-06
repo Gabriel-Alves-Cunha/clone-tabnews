@@ -1,69 +1,49 @@
 {
-  "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "incremental": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "alwaysStrict": true,
-    "diagnostics": true,
-    "exactOptionalPropertyTypes": true,
-    "extendedDiagnostics": true,
-    "importHelpers": true,
-    "inlineSourceMap": true,
-    "noErrorTruncation": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": true,
-    "pretty": true,
-    "noImplicitThis": true,
-    "checkJs": true,
-    "noImplicitAny": true,
-    "suppressExcessPropertyErrors": false,
-    "strictPropertyInitialization": true,
-    "noStrictGenericChecks": false,
-    "skipDefaultLibCheck": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictBindCallApply": true,
-    "useUnknownInCatchVariables": true,
-    "verbatimModuleSyntax": true,
-    "baseUrl": "./",
-    "types": [
-      "bun-types"
-    ],
-    "paths": {
-      "#pages/*": [
-        "./pages/*"
-      ],
-      "#tests/*": [
-        "./tests/*"
-      ],
-      "#infra/*": [
-        "./infra/*"
-      ],
-      "#utils/*": [
-        "./utils/*"
-      ]
-    },
-    "jsx": "preserve"
-  },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+	"compilerOptions": {
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"allowJs": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"noEmit": true,
+		"incremental": true,
+		"esModuleInterop": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"alwaysStrict": true,
+		"diagnostics": true,
+		"exactOptionalPropertyTypes": true,
+		"extendedDiagnostics": true,
+		"importHelpers": true,
+		"inlineSourceMap": true,
+		"noErrorTruncation": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUncheckedIndexedAccess": true,
+		"pretty": true,
+		"noImplicitThis": true,
+		"checkJs": true,
+		"noImplicitAny": true,
+		"suppressExcessPropertyErrors": false,
+		"strictPropertyInitialization": true,
+		"noStrictGenericChecks": false,
+		"skipDefaultLibCheck": true,
+		"strictNullChecks": true,
+		"strictFunctionTypes": true,
+		"strictBindCallApply": true,
+		"useUnknownInCatchVariables": true,
+		"verbatimModuleSyntax": true,
+		"baseUrl": "./",
+		"types": ["bun-types"],
+		"paths": {
+			"#pages/*": ["./pages/*"],
+			"#tests/*": ["./tests/*"],
+			"#infra/*": ["./infra/*"],
+			"#utils/*": ["./utils/*"]
+		},
+		"jsx": "preserve"
+	},
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+	"exclude": ["node_modules"]
 }

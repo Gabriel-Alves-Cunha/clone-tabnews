@@ -6,11 +6,33 @@ import { env } from "#utils/env";
 type OverloadedArgument = any;
 
 type Database = {
+	getNewClient: () => Promise<Client>;
 	query: ClientBase["query"];
 };
 
 export const database: Database = {
 	async query(queryText: OverloadedArgument) {
+		let client: Client | undefined;
+
+		try {
+			client = await database.getNewClient();
+
+			const result = await client.query(queryText);
+
+			console.log("db query result:");
+			console.dir(result, { depth: 10 });
+
+			return result;
+		} catch (error) {
+			console.error("Database query error!", error);
+
+			throw error;
+		} finally {
+			await client?.end();
+		}
+	},
+
+	async getNewClient() {
 		const client = new Client({
 			port: Number(env.POSTGRES_PORT),
 			password: env.POSTGRES_PASSWORD,
@@ -20,22 +42,9 @@ export const database: Database = {
 			ssl: getSslValues(),
 		});
 
-		try {
-			await client.connect();
+		await client.connect();
 
-			const result = await client.query(queryText);
-
-			console.info("db query result:");
-			console.dir(result, { depth: 10 });
-
-			return result;
-		} catch (error) {
-			console.error("Database query error!", error);
-
-			throw error;
-		} finally {
-			await client.end();
-		}
+		return client;
 	},
 };
 
@@ -46,5 +55,5 @@ const getSslValues = () => {
 		};
 	}
 
-	return process.env.NODE_ENV !== "development";
+	return process.env.NODE_ENV === "production";
 };
